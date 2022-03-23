@@ -12,25 +12,37 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val rollButton: Button = findViewById(R.id.button)
+        val chancesLeftText: TextView = findViewById(R.id.textView3)
+        var rollChances = 3
         rollButton.setOnClickListener {
             val luckyNum = generateLuckyNumber()
             displayLuckyNum(luckyNum)
             val diceSum = rollDices()
-            var life = 0
-            if(life<=3){
+            rollChances = gameLogic(luckyNum, diceSum, rollChances)
+
+            if(rollChances >    0){
                 if(diceSum == luckyNum){
                     Toast.makeText(this, "You win", Toast.LENGTH_SHORT).show()
                 }
                 else{
                     Toast.makeText(this, "Roll Please", Toast.LENGTH_SHORT).show()
                 }
-                life++
             }
             else{
                 Toast.makeText(this, "GAME OVER", Toast.LENGTH_SHORT).show()
+                rollChances = 3
             }
+            chancesLeftText.text = rollChances.toString()
 
         }
+    }
+
+    fun gameLogic(luckyNum: Int, diceSum: Int, chances: Int): Int{
+        var count = chances
+        if(luckyNum == diceSum || luckyNum != diceSum){
+            count--
+        }
+        return count
     }
 
     private fun generateLuckyNumber(): Int {
