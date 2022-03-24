@@ -13,15 +13,20 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val rollButton: Button = findViewById(R.id.button)
-        val chancesLeftText: TextView = findViewById(R.id.textView3)
+        var chancesLeftText: TextView = findViewById(R.id.textView3)
+        chancesLeftText.text = "3"
 
         var newGameText: TextView = findViewById(R.id.textView4)
-
         var rollChances = 3
+
+        var games = 0
+        var totalGamesText: TextView = findViewById(R.id.textView8)
+        totalGamesText.text = games.toString()
+
         rollButton.setOnClickListener {
             val luckyNum = generateLuckyNumber()
             displayLuckyNum(luckyNum)
-            val diceSum = rollDices()
+            var diceSum = rollDices()
             rollChances = gameLogic(luckyNum, diceSum, rollChances)
 
             if(rollChances>0){
@@ -29,6 +34,8 @@ class MainActivity : AppCompatActivity() {
             }
             else{
                 newGameText.text = "New Game"
+                diceSum = 0
+                games++
             }
 
             if(rollChances >    0){
@@ -45,6 +52,7 @@ class MainActivity : AppCompatActivity() {
             }
             chancesLeftText.text = rollChances.toString()
 
+            totalGamesText.text = games.toString()
 
 
 
