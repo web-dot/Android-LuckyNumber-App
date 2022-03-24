@@ -14,12 +14,22 @@ class MainActivity : AppCompatActivity() {
 
         val rollButton: Button = findViewById(R.id.button)
         val chancesLeftText: TextView = findViewById(R.id.textView3)
+
+        var newGameText: TextView = findViewById(R.id.textView4)
+
         var rollChances = 3
         rollButton.setOnClickListener {
             val luckyNum = generateLuckyNumber()
             displayLuckyNum(luckyNum)
             val diceSum = rollDices()
             rollChances = gameLogic(luckyNum, diceSum, rollChances)
+
+            if(rollChances>0){
+                newGameText.text = ""
+            }
+            else{
+                newGameText.text = "New Game"
+            }
 
             if(rollChances >    0){
                 if(diceSum == luckyNum){
@@ -34,6 +44,9 @@ class MainActivity : AppCompatActivity() {
                 rollChances = 3
             }
             chancesLeftText.text = rollChances.toString()
+
+
+
 
         }
     }
@@ -104,7 +117,6 @@ class MainActivity : AppCompatActivity() {
         diceImage1.setImageResource(drawableResource1)
         diceImage2.setImageResource(drawableResource2)
         diceImage3.setImageResource(drawableResource3)
-
 
         return diceSum
     }
