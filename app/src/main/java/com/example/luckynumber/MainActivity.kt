@@ -3,6 +3,7 @@ package com.example.luckynumber
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 
@@ -65,13 +66,45 @@ class MainActivity : AppCompatActivity() {
 
         val diceSum = diceVal1 + diceVal2 + diceVal3
 
-        val textForDice1: TextView = findViewById(R.id.textView6)
-        val textForDice2: TextView = findViewById(R.id.textView7)
-        val textForDice3: TextView = findViewById(R.id.textView8)
+        val diceImage1: ImageView = findViewById(R.id.imageView3)
+        val diceImage2: ImageView = findViewById(R.id.imageView)
+        val diceImage3: ImageView = findViewById(R.id.imageView2)
 
-        textForDice1.text = diceVal1.toString()
-        textForDice2.text = diceVal2.toString()
-        textForDice3.text = diceVal3.toString()
+        //diceImage1.setImageResource(R.drawable.dice_1)
+        //diceImage2.setImageResource(R.drawable.dice_1)
+        //diceImage3.setImageResource(R.drawable.dice_1)
+
+        val drawableResource1 = when(diceVal1){
+            1 -> R.drawable.dice_1
+            2 -> R.drawable.dice_2
+            3 -> R.drawable.dice_3
+            4 -> R.drawable.dice_4
+            5 -> R.drawable.dice_5
+            else -> R.drawable.dice_6
+        }
+
+        val drawableResource2 = when(diceVal2){
+            1 -> R.drawable.dice_1
+            2 -> R.drawable.dice_2
+            3 -> R.drawable.dice_3
+            4 -> R.drawable.dice_4
+            5 -> R.drawable.dice_5
+            else -> R.drawable.dice_6
+        }
+
+        val drawableResource3 = when(diceVal3){
+            1 -> R.drawable.dice_1
+            2 -> R.drawable.dice_2
+            3 -> R.drawable.dice_3
+            4 -> R.drawable.dice_4
+            5 -> R.drawable.dice_5
+            else -> R.drawable.dice_6
+        }
+
+        diceImage1.setImageResource(drawableResource1)
+        diceImage2.setImageResource(drawableResource2)
+        diceImage3.setImageResource(drawableResource3)
+
 
         return diceSum
     }
